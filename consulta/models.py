@@ -3,6 +3,7 @@ from paciente.models import Paciente
 from diagnostico.models import Diagnostico
 from django.utils import timezone
 from doctor.models import Doctor
+from centro_medico.models import CentroMedico
 # Create your models here.
 
 CONSULTAS = (
@@ -10,8 +11,16 @@ CONSULTAS = (
     (2, 'Visita de Campo')
 )
 
+PRIMARIA_O_SUCESIVA = (
+    ('P', 'Primaria'),
+    ('S', 'Sucesiva')
+)
+class Conducta(models.Model):
+    nombre = models.CharField(max_length = 25)
+    detalle = models.CharField(max_length = 200)
 
 class Consulta(models.Model):
+    centro_medico = models.ForeignKey(CentroMedico, on_delete = models.PROTECT)
     diagnostico = models.ForeignKey(Diagnostico, on_delete=models.PROTECT)
     paciente = models.ForeignKey(Paciente, on_delete= models.PROTECT)    
     created_at = models.DateTimeField(auto_now_add=True)
@@ -22,3 +31,10 @@ class Consulta(models.Model):
         choices = CONSULTAS,
         default = 1
     )
+    conducta = models.ForeignKey(Conducta, on_delete = models.PROTECT)
+    PS = models.TextField(
+        max_length = 1,
+        choices = PRIMARIA_O_SUCESIVA,
+        default = 'P'
+    )
+
