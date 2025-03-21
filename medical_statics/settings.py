@@ -42,8 +42,18 @@ INSTALLED_APPS = [
     'consulta.apps.ConsultaConfig',
     'paciente.apps.PacienteConfig',
     'centro_medico.apps.CentroMedicoConfig',
-    'diagnostico.apps.DiagnosticoConfig'
+    'diagnostico.apps.DiagnosticoConfig',
+    'rest_framework'
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    #'DEFAULT_PERMISSION_CLASSES': [
+     #   'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+   # ]
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
