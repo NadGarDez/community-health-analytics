@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from centro_medico.models import CentroMedico
 
 OPCIONES_DE_SEXO = (
     ('M','MASCULINO'),
@@ -26,7 +26,7 @@ class UsuarioPersonalizado(AbstractUser):
 
 class Doctor(models.Model):
     user = models.OneToOneField(UsuarioPersonalizado, on_delete=models.PROTECT)
-    
+    centro_medico = models.ForeignKey(CentroMedico, on_delete=models.PROTECT, related_name='doctores')  
 
 
 # Create your models here.

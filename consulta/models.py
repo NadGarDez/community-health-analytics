@@ -20,12 +20,12 @@ class Conducta(models.Model):
     detalle = models.CharField(max_length = 200)
 
 class Consulta(models.Model):
-    centro_medico = models.ForeignKey(CentroMedico, on_delete = models.PROTECT)
-    diagnostico = models.ForeignKey(Diagnostico, on_delete=models.PROTECT)
-    paciente = models.ForeignKey(Paciente, on_delete= models.PROTECT)    
+    centro_medico = models.ForeignKey(CentroMedico, on_delete = models.PROTECT, related_name='consultas')
+    diagnostico = models.ForeignKey(Diagnostico, on_delete=models.PROTECT,  related_name='consultas')
+    paciente = models.ForeignKey(Paciente, on_delete= models.PROTECT,  related_name='consultas')    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    doctor = models.ForeignKey(Doctor, on_delete = models.PROTECT)
+    doctor = models.ForeignKey(Doctor, on_delete = models.PROTECT,  related_name='consultas')
     tipo = models.TextField(
         max_length = 1,
         choices = CONSULTAS,
