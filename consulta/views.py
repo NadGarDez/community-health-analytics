@@ -33,7 +33,7 @@ class ListaDeConsultasPorCentro(GenericAPIView, ListModelMixin):
 
     def get_queryset(self):
         centro_id = self.kwargs.get('centro')
-        return Consulta.objects.filter(centro = centro_id)
+        return Consulta.objects.filter(centro_medico = centro_id)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
