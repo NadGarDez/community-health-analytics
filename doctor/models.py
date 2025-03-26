@@ -10,13 +10,13 @@ OPCIONES_DE_SEXO = (
 
 
 class UsuarioPersonalizado(AbstractUser):
-    nombre = models.CharField(max_length=20)
+    nombre = models.CharField(max_length=20, null= True, blank=True)
     segundo_nombre = models.CharField(max_length=20, null=True, blank=True)
-    apellido = models.CharField(max_length=20)
+    apellido = models.CharField(max_length=20,null= True, blank=True)
     segundo_apellido = models.CharField(max_length=20, null=True, blank=True)
-    nacimiento = models.DateField()
-    prefijo_ci = models.CharField(max_length=1)
-    ci = models.CharField(max_length=10)
+    nacimiento = models.DateField(null= True, blank=True)
+    prefijo_ci = models.CharField(max_length=1,null= True, blank=True)
+    ci = models.CharField(max_length=10, null= True, blank=True)
     sexo = models.CharField(
         max_length=2,
         choices = OPCIONES_DE_SEXO,
@@ -29,4 +29,3 @@ class Doctor(models.Model):
     centro_medico = models.ForeignKey(CentroMedico, on_delete=models.PROTECT, related_name='doctores')  
 
 
-# Create your models here.
