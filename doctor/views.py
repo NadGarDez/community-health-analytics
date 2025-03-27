@@ -20,7 +20,8 @@ class ListaDeDoctores(views.APIView):
 class ListaDeDoctoresPorCentro(GenericAPIView,ListModelMixin):
     serializer_class = DoctorSerializer
     def get_queryset(self):
-        return Doctor.objects.all()
+        centro = self.kwargs.get('centro')
+        return Doctor.objects.filter(centro_medico = centro)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs) 
@@ -30,7 +31,8 @@ class ListaDeDoctoresPorPaciente(GenericAPIView, ListModelMixin):
     serializer_class = DoctorSerializer
 
     def get_queryset(self):
-        return Doctor.objects.all()
+        paciente = self.kwargs.get('paciente')
+        return Doctor.objects.filter(consultas__paciente__pk = paciente)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -40,8 +42,8 @@ class ListaDeDoctoresPorDiagnosticoEnConsultas(GenericAPIView, ListModelMixin):
     serializer_class = DoctorSerializer
 
     def get_queryset(self):
-
-        return Doctor.objects.all()
+        diagnostico = self.kwargs.get('diagnostico')
+        return Doctor.objects.filter(consultas_diagnostico__pk = diagnostico)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)

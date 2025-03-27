@@ -30,7 +30,6 @@ class ListaDeConsultasPorDoctor(GenericAPIView,ListModelMixin):
 class ListaDeConsultasPorCentro(GenericAPIView, ListModelMixin):
     serializer_class = ConsultaSerializer
 
-
     def get_queryset(self):
         centro_id = self.kwargs.get('centro')
         return Consulta.objects.filter(centro_medico = centro_id)
@@ -42,7 +41,6 @@ class ListaDeConsultasPorCentro(GenericAPIView, ListModelMixin):
 
 class ListaDeConsultasPorDiagnostico(GenericAPIView, ListModelMixin):
     serializer_class = ConsultaSerializer
-
 
     def get_queryset(self):
         diagnostico_id = self.kwargs.get('diagnostico')

@@ -24,7 +24,8 @@ class ListaDeDiagnosticosPorCreador(GenericAPIView, ListModelMixin):
     serializer_class = DiagnosticoSerializer
 
     def get_queryset(self):
-        return  Diagnostico.objects.all()
+        doctor = self.kwargs.get('doctor')
+        return  Diagnostico.objects.filter(creador = doctor)
 
 
     def get(self, request, *args, **kwargs):
