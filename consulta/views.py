@@ -3,12 +3,19 @@ from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
-from rest_framework.mixins import ListModelMixin
+from rest_framework.mixins import ListModelMixin, CreateModelMixin
 from .serializers import ConsultaSerializer
 from .models import Consulta
 
 # Create your views here.
 
+class CreacionDeConsulta(GenericAPIView, CreateModelMixin):
+    serializer_class = ConsultaSerializer
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+        
+    
 class ListaDeConsultas(APIView):
 
     def get(self,request):

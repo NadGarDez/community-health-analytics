@@ -5,8 +5,13 @@ from .serializers import PacienteSerializer
 from rest_framework import views
 from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
-from rest_framework.mixins import ListModelMixin
+from rest_framework.mixins import ListModelMixin, CreateModelMixin
 # Create your views here.
+
+class CreacionDePaciente(GenericAPIView, CreateModelMixin):
+    serializer_class = PacienteSerializer
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
 class ListaDePacientes(views.APIView):
     

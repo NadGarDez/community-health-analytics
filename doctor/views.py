@@ -3,12 +3,17 @@ from django.http import HttpResponse
 from .models import Doctor
 from .serializers import DoctorSerializer
 from rest_framework.generics import GenericAPIView
-from rest_framework.mixins import ListModelMixin
+from rest_framework.mixins import ListModelMixin, CreateModelMixin
 from rest_framework import views
 from rest_framework.response import Response
 #
 
 # Create your views here.
+class CreacionDeDoctor(GenericAPIView, CreateModelMixin):
+    serializer_class = DoctorSerializer
+    def post(self, request, *args, **kwargs):
+        return self.creater(request, *args, **kwargs)
+
 
 class ListaDeDoctores(views.APIView):
     def get(self, request, format = None):

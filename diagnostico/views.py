@@ -5,16 +5,21 @@ from rest_framework.response import Response
 from .models import Diagnostico
 from .serializers import DiagnosticoSerializer
 from rest_framework.generics import GenericAPIView
-from rest_framework.mixins import ListModelMixin
+from rest_framework.mixins import ListModelMixin, CreateModelMixin
 
 # Create your views here.
 
 def index(request):
     return HttpResponse('App diagnostico')
 
+class CreacionDeDiagnostico(GenericAPIView, CreateModelMixin):
+    serializer_class = DiagnosticoSerializer
+    def post(self,request,  *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
 class ListaDeDiagnosticos(APIView):
     
-    def get(self, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         resultados = Diagnostico.objects.all()
         formato = DiagnosticoSerializer(resultados, many = True) 
         return Response(formato.data)
