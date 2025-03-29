@@ -4,4 +4,4 @@ from .models import Doctor
 class DoctorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Doctor
-        fields = ['*']
+        fields = '__all__' 

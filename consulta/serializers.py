@@ -5,4 +5,4 @@ from .models import Consulta
 class ConsultaSerializer(serializers.ModelSerializer):
    class Meta:
        model = Consulta
-       fields = ['*']
+       fields = '__all__'

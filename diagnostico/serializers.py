@@ -4,5 +4,5 @@ from .models import Diagnostico
 class DiagnosticoSerializer(ModelSerializer):
     class Meta:
         model = Diagnostico
-        fields = ['*']
+        fields = '__all__'
 

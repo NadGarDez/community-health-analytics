@@ -12,7 +12,7 @@ from rest_framework.response import Response
 class CreacionDeDoctor(GenericAPIView, CreateModelMixin):
     serializer_class = DoctorSerializer
     def post(self, request, *args, **kwargs):
-        return self.creater(request, *args, **kwargs)
+        return self.create(request, *args, **kwargs)
 
 
 class ListaDeDoctores(views.APIView):

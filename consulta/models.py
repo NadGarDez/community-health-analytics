@@ -7,8 +7,8 @@ from centro_medico.models import CentroMedico
 # Create your models here.
 
 CONSULTAS = (
-    (1, 'Morbilidad'),
-    (2, 'Visita de Campo')
+    ('M', 'Morbilidad'),
+    ('C', 'Visita de Campo')
 )
 
 PRIMARIA_O_SUCESIVA = (
@@ -18,6 +18,9 @@ PRIMARIA_O_SUCESIVA = (
 class Conducta(models.Model):
     nombre = models.CharField(max_length = 25)
     detalle = models.CharField(max_length = 200)
+    def __str__(self):
+        return self.nombre
+
 
 class Consulta(models.Model):
     centro_medico = models.ForeignKey(CentroMedico, on_delete = models.PROTECT, related_name='consultas')
@@ -29,7 +32,7 @@ class Consulta(models.Model):
     tipo = models.TextField(
         max_length = 1,
         choices = CONSULTAS,
-        default = 1
+        default = 'M' 
     )
     conducta = models.ForeignKey(Conducta, on_delete = models.PROTECT)
     PS = models.TextField(
@@ -37,4 +40,7 @@ class Consulta(models.Model):
         choices = PRIMARIA_O_SUCESIVA,
         default = 'P'
     )
+
+    def __str__(self):
+        return f'Consulta {self.pk}'
 

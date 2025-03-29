@@ -1,0 +1,9 @@
+{
+  "centro_medico":1,
+  "diagnostico": 1,
+  "paciente": 1,
+  "doctor": 2,
+  "tipo":1,
+  "conducta":1,
+  "PS": "P"
+}

@@ -43,7 +43,7 @@ class ListaDeCentrosMedicosPorDiagnostico(GenericAPIView, ListModelMixin):
     def get_queryset(self):
         try:
             diagnostico = self.kwargs.get('diagnostico')
-            return CentroMedico.objects.filter(consultas__diagnostico__pk = diagnostico)
+            return CentroMedico.objects.filter(consultas__diagnostico__pk = diagnostico).distinct()
         except:
             return None
 

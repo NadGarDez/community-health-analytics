@@ -28,4 +28,5 @@ class Doctor(models.Model):
     user = models.OneToOneField(UsuarioPersonalizado, on_delete=models.PROTECT)
     centro_medico = models.ManyToManyField(CentroMedico, related_name='doctores')  
 
-
+    def __str__(self):
+        return f'Doctor {self.pk}'

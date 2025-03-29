@@ -18,3 +18,6 @@ class Paciente(models.Model):
         choices = GRADOS_DISPENSARIALES,
         default = 1
     ) 
+    
+    def __str__(self):
+        return f'Usuario {self.user.pk}'
